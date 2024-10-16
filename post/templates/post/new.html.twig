@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+ 
+{% block title %}New Post{% endblock %}
+ 
+{% block body %}
+    <div class="container">
+        <h2 class="text-center mt-5 mb-3">Create Post</h2>
+        <div class="card">
+            <div class="card-header">
+                <a class="btn btn-outline-info float-right" href="{{ path('app_post_index') }}"> 
+                    View All Posts
+                </a>
+            </div>
+            <div class="card-body">
+                 {{ include('post/_form.html.twig') }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

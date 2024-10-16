@@ -1,0 +1,61 @@
+Symfony programming
+-----------------------
+https://symfonycasts.com/tracks/symfony4
+https://www.youtube.com/watch?v=gxV7wOz_WI4
+ https://www.youtube.com/watch?v=jcJvLd2drt8&list=PL1VNfNEczoJ25LoYL-gJBhmgZYvLAUaE5
+https://www.binaryboxtuts.com/php-tutorials/symfony-5-crud-app-easy-tutorial/ (working)
+https://symfonycasts.com/screencast/symfony2-ep2/registration-validation (server validation)
+
+
+composer create-project symfony/skeleton:"4.4.*" <projectname>
+composer create-project symfony/skeleton <projectname>
+composer require --dev symfony/orm-pack:*
+composer require --dev symfony/form:*
+composer require --dev symfony/validator:*
+composer require --dev symfony/security-csrf:*
+composer require --dev symfony/maker-bundle:*
+composer require symfony/annotations-pack 
+composer require sensio/framework-extra-bundle
+composer require symfony/twig-bundle:*
+composer require --dev symfony/asset:*
+
+
+php bin/console doctrine:database:create
+open .env file and modify below 
+DATABASE_URL="mysql://root@127.0.0.1:3306/sf_4?serverVersion=8&charset=utf8mb4"
+
+
+php bin/console make:entity
+php bin/console make:migration
+php bin/console doctrine:migrations:migrate
+php bin/console make:crud
+php bin/console debug:router (to show routing url)
+
+don't forget to put .htaccess file inside public folder
+run your project in browser like http://localhost/symfony4/post/public/article/
+
+#include css and js link in template file like below
+<link rel="stylesheet" href="{{ asset('/css/bootstrap.css') }}">
+<script src="{{ asset('/js/bootstrap.min.js') }}"></script>
+
+
+#how to add serverside validation 
+open entity file and do the following 
+use Symfony\Component\Validator\Constraints as Assert;
+/**
+* @ORM\Column(name="name",type="string", length=100)
+@Assert\NotBlank()
+*/
+private $name;
+
+# Disable jsvalidation by default
+find the submit button and add formnovalidate
+EX:<button formnovalidate  class="btn {{ button_color|default('btn-outline-primary') }}  mt-3">{{ button_label|default('Save') }}</button>
+
+
+#if you create copy of any project then after modying controller,model,view you need to run below 
+composer require symfony/annotations-pack
+
+URL: http://localhost/symfony4/post/public/article
+
+
